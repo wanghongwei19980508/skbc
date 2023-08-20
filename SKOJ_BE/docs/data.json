@@ -1,0 +1,29 @@
+{
+    "update": [
+        {
+            "version": "2023-02-12",
+            "level": "Important",
+            "title": "2023-02-12",
+            "details": [
+                "实现了客观题模块（前台+后台）",
+                "实现了客观题提交功能"
+            ]
+        },
+        {
+            "version": "2023-02-18",
+            "level": "Important",
+            "title": "2023-02-18",
+            "details": [
+                "新增课程模块"
+            ]
+        },
+        {
+            "version": "2023-03-03",
+            "level": "Important",
+            "title": "2023-03-03",
+            "details": [
+                "新增软件列表"
+            ]
+        }
+    ]
+}

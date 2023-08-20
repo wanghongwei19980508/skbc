@@ -1,0 +1,55 @@
+version: "3"
+services:
+  # oj-redis:
+  #   image: redis:4.0-alpine
+  #   container_name: oj-redis
+  #   restart: always
+  #   volumes:
+  #     - ./data/log/redis:/data
+  #   ports:
+  #     - "0.0.0.0:6380:6379"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+  # oj-postgres:
+  #   image: postgres:10-alpine
+  #   container_name: oj-postgres
+  #   restart: always
+  #   volumes:
+  #     - ./data/log/postgres:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=skojda
+  #     - POSTGRES_USER=skoj
+  #     - POSTGRES_PASSWORD=Nice_try
+  #   ports:
+  #     - "0.0.0.0:5432:5432"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+  judge-server:
+    image: registry.cn-heyuan.aliyuncs.com/nice_try_sk/judge-server:v1.1
+    container_name: judge-server
+    restart: always
+    read_only: true
+    cap_drop:
+      - SETPCAP
+      - MKNOD
+      - NET_BIND_SERVICE
+      - SYS_CHROOT
+      - SETFCAP
+      - FSETID
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./data/test_case:/test_case:ro
+      - ./data/log/judge_server/log:/log
+      - ./data/log/judge_server/run:/judger
+    environment:
+      - SERVICE_URL=http://127.0.0.1:10006
+      - BACKEND_URL=http://host.docker.internal:8000/api/judge_server_heartbeat/
+      - TOKEN=7348aaf788b1a5f6335e2667eb4f0de7
+    ports:
+      - "0.0.0.0:8000:8000"
+      - "0.0.0.0:10006:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

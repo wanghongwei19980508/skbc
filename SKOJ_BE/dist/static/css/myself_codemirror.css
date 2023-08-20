@@ -1,0 +1,22 @@
+.CodeMirror {
+    height: auto !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .CodeMirror-scroll {
+        min-height: calc(100vh - 400px);
+        max-height: calc(100vh - 400px);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .CodeMirror-scroll {
+        min-height: calc(100vh - 305px);
+        max-height: calc(100vh - 305px);
+    }
+}
+
+.CodeMirror-sizer {
+    font-size: 140%;
+    line-height: 140%;
+}
